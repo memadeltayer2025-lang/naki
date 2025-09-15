@@ -1,0 +1,3225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نقي - رحلتك الذكية للإقلاع عن التدخين</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .tree-animation {
+            animation: grow 2s ease-out;
+        }
+        
+        @keyframes grow {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .celebration {
+            animation: celebrate 0.6s ease-out;
+        }
+        
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .ai-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .coin-animation {
+            animation: coinFlip 0.8s ease-out;
+        }
+        
+        @keyframes coinFlip {
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(180deg) scale(1.2); }
+            100% { transform: rotateY(360deg) scale(1); }
+        }
+        
+        .level-up {
+            animation: levelUp 1s ease-out;
+        }
+        
+        @keyframes levelUp {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        
+        .game-canvas {
+            background: linear-gradient(45deg, #1e3a8a, #7c3aed, #ec4899);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .heart-beat {
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .shield-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+            animation: shieldPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes shieldPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 1); }
+        }
+        
+        .back-button {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .developer-signature {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 12px;
+            color: #666;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        /* أنماط إضافية لنظام الجلسات */
+        .session-progress {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .session-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            transition: width 0.3s ease;
+        }
+        
+        .session-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .session-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.4);
+        }
+        
+        .session-card.completed {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+        }
+        
+        .session-card.current {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+        }
+        
+        /* أنماط v3 - رحلة التعافي */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #4ca1af;
+            --accent-color: #fdbb2d;
+            --success-color: #4caf50;
+            --warning-color: #ff9f43;
+            --light-bg: #eef5f7;
+            --dark-text: #2c3e50;
+            --light-text: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .journey-container {
+            width: 95%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .help-section {
+            padding: 12px 20px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .help-section i {
+            font-size: 1.2rem;
+        }
+        
+        .help-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .timer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #4ca1af, #2c3e50);
+            color: white;
+        }
+        
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timer-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4ca1af 0%, #2c3e50 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.2);
+            position: relative;
+            border: 2px solid white;
+        }
+        
+        .timer-days {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timer-hours {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timer-label {
+            font-size: 0.9rem;
+        }
+        
+        .reset-btn {
+            padding: 8px 15px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .reset-btn:hover {
+            background: #e6a720;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .map-section {
+            padding: 20px;
+            background: var(--light-bg);
+            border-bottom: 3px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, #c9d6ff 0%, #e2e2e2 100%);
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+        }
+        
+        .journey-map {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #a8c0ff, #3f2b96);
+            border-radius: 8px;
+        }
+        
+        .map-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 3px, transparent 3px),
+                radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+            background-size: 100px 100px, 150px 150px, 200px 200px, 250px 250px;
+            background-position: 0 0, 30px 60px, 70px 20px, 120px 80px;
+            opacity: 0.6;
+        }
+        
+        .map-terrain {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, #5a9216, #8bc34a);
+            clip-path: polygon(0 100%, 5% 80%, 10% 90%, 15% 70%, 20% 85%, 25% 65%, 30% 80%, 35% 60%, 40% 75%, 45% 55%, 50% 70%, 55% 50%, 60% 65%, 65% 45%, 70% 60%, 75% 40%, 80% 55%, 85% 35%, 90% 50%, 95% 30%, 100% 45%, 100% 100%);
+            opacity: 0.7;
+        }
+        
+        .map-mountains {
+            position: absolute;
+            bottom: 40%;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, #795548, #9e9e9e);
+            clip-path: polygon(0 100%, 10% 50%, 20% 70%, 30% 40%, 40% 60%, 50% 30%, 60% 50%, 70% 20%, 80% 40%, 90% 10%, 100% 30%, 100% 100%);
+            opacity: 0.8;
+        }
+        
+        .map-river {
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 5%;
+            height: 40%;
+            background: linear-gradient(to top, var(--secondary-color), #87ceeb);
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+            opacity: 0.9;
+        }
+        
+        .map-path {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .path-line {
+            stroke: var(--accent-color);
+            stroke-width: 4;
+            stroke-dasharray: 8;
+            fill: none;
+            filter: drop-shadow(0 0 5px rgba(253, 187, 45, 0.7));
+            animation: dash-animation 20s linear infinite;
+        }
+        
+        @keyframes dash-animation {
+            to {
+                stroke-dashoffset: 1000;
+            }
+        }
+        
+        .map-points {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .point {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark-text);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            transform: translate(-50%, -50%);
+        }
+        
+        .point.active {
+            background: var(--warning-color);
+            border-color: white;
+            transform: translate(-50%, -50%) scale(1.3);
+            box-shadow: 0 5px 15px rgba(255, 159, 67, 0.7);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        
+        .point.completed {
+            background: var(--success-color);
+            border-color: white;
+        }
+        
+        .point.locked {
+            background: #ccc;
+            border-color: #999;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .point:hover:not(.locked) {
+            transform: translate(-50%, -50%) scale(1.4);
+            z-index: 15;
+        }
+        
+        .point-label {
+            position: absolute;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            transform: translate(-50%, -45px);
+            box-shadow: var(--shadow);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 20;
+        }
+        
+        .point:hover:not(.locked) .point-label {
+            opacity: 1;
+        }
+        
+        .story-section {
+            padding: 15px 20px;
+            background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+            border-bottom: 3px solid var(--accent-color);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            margin: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .story-title {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .story-title i {
+            color: var(--secondary-color);
+        }
+        
+        .story-content {
+            color: #5a4b41;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+        
+        .questions-container {
+            padding: 20px;
+            background: linear-gradient(to bottom, #f9f9f9, var(--light-bg));
+            border-radius: 10px;
+            margin: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-right: 5px solid var(--accent-color);
+        }
+        
+        .questions-title {
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .questions-title i {
+            color: var(--secondary-color);
+        }
+        
+        .question {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .option {
+            padding: 6px 12px;
+            background: #e0e0e0;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        
+        .option:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .option.selected {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .current-station {
+            text-align: center;
+            padding: 10px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background: var(--light-bg);
+            border-top: 2px solid var(--secondary-color);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            margin: 0 10px;
+        }
+        
+        .nav-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .congratulations {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .congratulations-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            color: var(--dark-text);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .congratulations h2 {
+            color: var(--success-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .congratulations p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .close-btn {
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .map-container {
+                height: 350px;
+            }
+            
+            .point {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .questions-container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .story-section {
+                padding: 12px;
+                margin: 10px;
+            }
+            
+            .story-content {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .story-title {
+                font-size: 1.1rem;
+            }
+            
+            .questions-title {
+                font-size: 1.1rem;
+            }
+            
+            .question-text {
+                font-size: 0.9rem;
+            }
+            
+            .option {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .help-text {
+                font-size: 0.85rem;
+            }
+            
+            .timer-circle {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .timer-days {
+                font-size: 1rem;
+            }
+            
+            .timer-hours {
+                font-size: 0.7rem;
+            }
+            
+            .timer-label {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .journey-container {
+                width: 100%;
+                border-radius: 10px;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .point {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .questions-title {
+                font-size: 1rem;
+            }
+            
+            .story-title {
+                font-size: 1rem;
+            }
+            
+            .story-content {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+            
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .question-text {
+                font-size: 0.85rem;
+            }
+            
+            .option {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+                border-radius: 12px;
+            }
+            
+            .options {
+                gap: 6px;
+            }
+            
+            .help-section {
+                padding: 10px 15px;
+            }
+            
+            .help-text {
+                font-size: 0.8rem;
+            }
+            
+            .timer-section {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .timer-circle {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .timer-days {
+                font-size: 0.9rem;
+            }
+            
+            .timer-hours {
+                font-size: 0.65rem;
+            }
+            
+            .timer-label {
+                font-size: 0.75rem;
+            }
+            
+            .reset-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+        
+        /* Journey Modal */
+        #journeyModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        
+        #journeyModal.active {
+            display: flex;
+        }
+        
+        .journey-modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .journey-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: linear-gradient(to right, #4ca1af, #2c3e50);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .journey-modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .close-journey-modal {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-journey-modal:hover {
+            background: #e6a720;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header with AI Status -->
+    <header class="gradient-bg text-white p-6 shadow-lg">
+        <div class="max-w-md mx-auto">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <span class="text-2xl">🫁</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">نقي</h1>
+                        <div id="welcomeMessage" class="text-sm opacity-90 hidden">
+                            مرحباً <span id="displayUserName"></span>! 🌟
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left flex items-center space-x-2 space-x-reverse">
+                    <button id="logoutBtn" class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded hover:bg-opacity-30 transition-all hidden">
+                        🚪 تسجيل خروج
+                    </button>
+                    <button id="resetBtn" class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded hover:bg-opacity-30 transition-all">
+                        🔄
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="fixed inset-0 bg-gradient-to-br from-blue-300 via-sky-200 to-cyan-300 bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl p-6 max-w-xs w-full shadow-xl border border-blue-200 border-opacity-50">
+            <div class="text-center mb-4">
+                <div class="text-5xl mb-3 animate-bounce">🌟</div>
+                <h2 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">مرحباً بك في نقي</h2>
+                <p class="text-gray-700 text-sm font-medium">ابدأ رحلتك للإقلاع عن التدخين</p>
+                <div class="flex justify-center space-x-2 space-x-reverse mt-3">
+                    <span class="text-lg">🫁</span>
+                    <span class="text-lg">💪</span>
+                    <span class="text-lg">❤️</span>
+                </div>
+            </div>
+            
+            <form id="registrationForm" class="space-y-3">
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-800 mb-1 flex items-center">
+                        <span class="text-sm ml-1">👤</span>
+                        الاسم
+                    </label>
+                    <input type="text" id="userName" required 
+                           class="w-full px-3 py-2 bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all text-sm font-medium"
+                           placeholder="أدخل اسمك الكريم">
+                </div>
+                
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-800 mb-1 flex items-center">
+                        <span class="text-sm ml-1">📅</span>
+                        تاريخ ووقت الإقلاع
+                    </label>
+                    <input type="datetime-local" id="quitDateTime" required
+                           class="w-full px-3 py-2 bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all text-sm font-medium">
+                </div>
+                
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-800 mb-1 flex items-center">
+                        <span class="text-sm ml-1">🚬</span>
+                        عدد السجائر يومياً
+                    </label>
+                    <select id="cigarettesPerDay" required
+                            class="w-full px-3 py-2 bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all text-sm font-medium">
+                        <option value="">اختر العدد</option>
+                        <option value="5">5 سجائر</option>
+                        <option value="10">10 سجائر</option>
+                        <option value="15">15 سيجارة</option>
+                        <option value="20">20 سيجارة (علبة)</option>
+                        <option value="25">25 سيجارة</option>
+                        <option value="30">30 سيجارة</option>
+                        <option value="40">40 سيجارة (علبتان)</option>
+                        <option value="50">50+ سيجارة</option>
+                    </select>
+                </div>
+                
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-800 mb-1 flex items-center">
+                        <span class="text-sm ml-1">💰</span>
+                        العملة
+                    </label>
+                    <select id="currency" required
+                            class="w-full px-3 py-2 bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all text-sm font-medium">
+                        <option value="">اختر العملة</option>
+                        <option value="SAR">ريال سعودي (ر.س)</option>
+                        <option value="EGP">جنيه مصري (ج.م)</option>
+                        <option value="USD">دولار أمريكي ($)</option>
+                    </select>
+                </div>
+                
+                <div class="relative">
+                    <label class="block text-xs font-bold text-gray-800 mb-1 flex items-center">
+                        <span class="text-sm ml-1">💵</span>
+                        سعر العلبة
+                    </label>
+                    <select id="pricePerPack" required
+                            class="w-full px-3 py-2 bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all text-sm font-medium">
+                        <option value="">اختر السعر</option>
+                        <!-- Options will be populated based on currency selection -->
+                    </select>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-400 text-white py-4 rounded-2xl font-bold text-lg hover:from-blue-500 hover:via-sky-500 hover:to-cyan-500 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                    <span class="text-xl ml-2">🚀</span>
+                    ابدأ رحلتي نحو الحرية
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="max-w-md mx-auto p-4 space-y-6">
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-3 gap-3 mb-4">
+            <button id="meditationBtn" class="bg-gradient-to-br from-purple-400 via-pink-300 to-indigo-400 text-white p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-center">
+                <div class="text-3xl mb-2">🧘‍♂️</div>
+                <div class="text-sm font-semibold">جلسة تأمل</div>
+                <div class="text-xs opacity-80">تحرر من القيود</div>
+            </button>
+            
+            <button id="startStoryBtn" class="bg-gradient-to-br from-yellow-400 via-orange-300 to-red-400 text-white p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-center">
+                <div class="text-3xl mb-2">📖</div>
+                <div class="text-sm font-semibold">ابدأ قصتك</div>
+                <div class="text-xs opacity-80">شارك رحلتك</div>
+            </button>
+            
+            <button id="replantBtn" class="bg-gradient-to-br from-green-400 via-emerald-300 to-teal-400 text-white p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-center">
+                <div class="text-3xl mb-2">🌱</div>
+                <div class="text-sm font-semibold">إعادة بناء</div>
+                <div class="text-xs opacity-80">تصفير العدادات</div>
+            </button>
+        </div>
+
+        <!-- AI Insights Panel - Hidden -->
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hidden">
+            <div class="flex items-center mb-3">
+                <span class="text-2xl ml-2">🧠</span>
+                <h3 class="text-lg font-semibold">رؤى ذكية</h3>
+            </div>
+            <div id="aiInsight" class="bg-white bg-opacity-20 rounded-lg p-4">
+                <p class="text-sm mb-2">تحليل نمط الرغبة:</p>
+                <p id="aiInsightText" class="font-medium">أقوى رغباتك تحدث عادة في المساء. جهز نشاطاً بديلاً!</p>
+            </div>
+            <button id="aiAnalyzeBtn" class="mt-3 bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm hover:bg-opacity-30 transition-all">
+                تحليل جديد
+            </button>
+        </div>
+
+        <!-- Life Tree & Progress -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">شجرة حياتك</h2>
+            <div class="relative mb-4">
+                <div id="lifeTree" class="text-6xl tree-animation">🌱</div>
+                <div class="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+                    <span id="treeLevel">1</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-center mb-4">
+                <div class="bg-green-50 p-3 rounded-lg">
+                    <div class="text-lg font-semibold text-green-600" id="timeClean">0د 0س</div>
+                    <div class="text-xs text-gray-600">وقت نظيف</div>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg">
+                    <div class="text-lg font-semibold text-blue-600" id="moneySaved">0 ر.س</div>
+                    <div class="text-xs text-gray-600">وفرت</div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-purple-50 p-3 rounded-lg">
+                    <div class="text-lg font-semibold text-purple-600" id="cigarettesAvoided">0</div>
+                    <div class="text-xs text-gray-600">سيجارة تجنبتها</div>
+                </div>
+                <div class="bg-orange-50 p-3 rounded-lg">
+                    <div class="text-lg font-semibold text-orange-600" id="treeProgress">0%</div>
+                    <div class="text-xs text-gray-600">نمو الشجرة</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Button -->
+        <button id="gameBtn" class="w-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-center mb-6">
+            <div class="text-4xl mb-2">⚔️</div>
+            <div class="text-xl font-bold">إقهر التدخين</div>
+            <div class="text-sm opacity-90">احم قلبك من السجائر!</div>
+        </button>
+
+        <!-- Achievements & Rewards - Hidden -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg hidden">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                <span class="ml-2">🏅</span>
+                الإنجازات والمكافآت
+            </h3>
+            <div id="achievementsList" class="space-y-3">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+            <button id="rewardStoreBtn" class="w-full mt-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-orange-500 transition-all">
+                🛍️ متجر المكافآت
+            </button>
+        </div>
+    </div>
+
+    <!-- Developer Signature -->
+    <div class="developer-signature">
+        <div>Developed by Emad Al-Tayer</div>
+        <div>Programly Shokran</div>
+    </div>
+
+    <!-- Meditation Sessions Modal -->
+    <div id="sessionsModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full max-h-96 overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">جلسات التأمل التدريجي</h3>
+                <button id="closeSessionsBtn" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-4 mb-6">
+                <div class="session-progress">
+                    <div id="overallProgressBar" class="session-progress-bar" style="width: 0%"></div>
+                </div>
+                <div class="text-sm text-gray-600 text-center">إكمال عام: <span id="overallProgressText">0%</span></div>
+            </div>
+            
+            <div id="sessionsList" class="space-y-3">
+                <!-- Sessions will be populated by JavaScript -->
+            </div>
+            
+            <button id="backToMainBtn" class="w-full mt-6 bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-all">
+                العودة للرئيسية
+            </button>
+        </div>
+    </div>
+
+    <!-- Meditation Modal -->
+    <div id="meditationModal" class="fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 bg-opacity-95 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-6 max-w-md w-full max-h-96 overflow-y-auto border border-white border-opacity-20">
+            <!-- Questions Phase -->
+            <div id="questionsPhase">
+                <div class="text-center mb-6">
+                    <div class="text-4xl mb-3">🧘‍♂️</div>
+                    <h3 id="sessionTitle" class="text-xl font-semibold text-white mb-2">جلسة التحرر الذهني</h3>
+                    <p class="text-white text-opacity-80 text-sm">أجب بصدق لتحرر عقلك من الأوهام</p>
+                </div>
+                
+                <div id="questionContainer" class="space-y-4">
+                    <div class="text-center text-white">
+                        <div class="text-lg mb-2">السؤال <span id="currentQuestionNum">1</span> من 10</div>
+                        <div class="w-full bg-white bg-opacity-20 rounded-full h-2 mb-4">
+                            <div id="questionProgress" class="bg-gradient-to-r from-pink-400 to-purple-400 h-2 rounded-full transition-all duration-300" style="width: 10%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 rounded-2xl p-4 border border-white border-opacity-20">
+                        <p id="questionText" class="text-white text-center mb-4 leading-relaxed"></p>
+                        <textarea id="answerInput" 
+                                  class="w-full p-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none" 
+                                  rows="3" 
+                                  placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+                    
+                    <div class="flex space-x-3 space-x-reverse">
+                        <button id="backToSessionsBtn" class="w-1/3 bg-gray-600 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all back-button">
+                            الرجوع
+                        </button>
+                        <button id="prevQuestionBtn" class="w-1/3 bg-gray-600 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all back-button hidden">
+                            السابق
+                        </button>
+                        <button id="nextQuestionBtn" class="w-2/3 bg-gradient-to-r from-pink-400 to-purple-500 text-white py-3 rounded-xl font-semibold hover:from-pink-500 hover:to-purple-600 transition-all">
+                            التالي
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Meditation Article Phase -->
+            <div id="meditationPhase" class="hidden">
+                <div class="text-center mb-6">
+                    <div class="text-4xl mb-3">🌸</div>
+                    <h3 id="completionTitle" class="text-xl font-semibold text-white mb-2">تهانينا! لقد أكملت الجلسة</h3>
+                </div>
+                
+                <div id="sessionMessage" class="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20 space-y-4 text-white leading-relaxed">
+                    <!-- Session message will be populated here -->
+                </div>
+                
+                <div class="flex space-x-3 space-x-reverse mt-4">
+                    <button id="backToSessionsFromMessageBtn" class="w-1/2 bg-gray-600 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all">
+                        الرجوع للجلسات
+                    </button>
+                    <button id="nextSessionBtn" class="w-1/2 bg-gradient-to-r from-green-400 to-emerald-500 text-white py-3 rounded-xl font-semibold hover:from-green-500 hover:to-emerald-600 transition-all hidden">
+                        الجلسة التالية
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Modal -->
+    <div id="gameModal" class="fixed inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 hidden items-center justify-center z-50 p-4">
+        <div class="bg-black bg-opacity-80 rounded-3xl p-6 max-w-lg w-full border border-white border-opacity-20">
+            <!-- Game Header -->
+            <div class="text-center mb-4">
+                <h3 class="text-2xl font-bold text-white mb-2">⚔️ إقهر التدخين</h3>
+                <div class="flex justify-between items-center text-white text-sm">
+                    <div>المستوى: <span id="gameLevel" class="font-bold text-yellow-400">1</span></div>
+                    <div>النقاط: <span id="gameScore" class="font-bold text-green-400">0</span></div>
+                    <div>الحياة: <span id="gameLives" class="font-bold text-red-400">❤️❤️❤️</span></div>
+                </div>
+                <div class="mt-2 text-white text-sm">
+                    الوقت المتبقي: <span id="gameTime" class="font-bold text-blue-400">03:00</span>
+                </div>
+            </div>
+            
+            <!-- Game Canvas -->
+            <div class="relative bg-gradient-to-r from-blue-900 to-purple-900 rounded-2xl overflow-hidden border-4 border-white border-opacity-30" style="height: 400px;">
+                <canvas id="gameCanvas" width="400" height="400" class="w-full h-full"></canvas>
+                
+                <!-- Game UI Overlay -->
+                <div id="gameUI" class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <div class="text-6xl mb-4">🛡️</div>
+                        <h4 class="text-xl font-bold mb-2">احم قلبك!</h4>
+                        <p class="text-sm mb-4 opacity-80">حرك الماوس أو إصبعك يميناً ويساراً<br>لتحريك المسطرة الزرقاء ومنع السجائر من الوصول للقلب</p>
+                        <button id="startGameBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:from-green-600 hover:to-emerald-700 transition-all">
+                            ابدأ اللعبة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Level Complete Overlay -->
+                <div id="levelCompleteUI" class="absolute inset-0 bg-black bg-opacity-80 hidden items-center justify-center">
+                    <div class="text-center text-white">
+                        <div class="text-6xl mb-4">🏆</div>
+                        <h4 class="text-2xl font-bold mb-2 text-yellow-400">مستوى مكتمل!</h4>
+                        <p id="levelMessage" class="text-lg mb-4"></p>
+                        <button id="nextLevelBtn" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-bold hover:from-blue-600 hover:to-purple-700 transition-all">
+                            المستوى التالي
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Game Over Overlay -->
+                <div id="gameOverUI" class="absolute inset-0 bg-black bg-opacity-80 hidden items-center justify-center">
+                    <div class="text-center text-white">
+                        <div class="text-6xl mb-4">💔</div>
+                        <h4 class="text-2xl font-bold mb-2 text-red-400">انتهت اللعبة</h4>
+                        <p class="text-lg mb-4">لا تستسلم! قلبك يحتاج حمايتك</p>
+                        <button id="restartGameBtn" class="bg-gradient-to-r from-red-500 to-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:from-red-600 hover:to-pink-700 transition-all">
+                            العب مرة أخرى
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Controls -->
+            <div class="mt-4 text-center">
+                <button id="closeGameBtn" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-all">
+                    إغلاق اللعبة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reward Store Modal -->
+    <div id="rewardModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full max-h-96 overflow-y-auto">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800 text-center">🛍️ متجر المكافآت</h3>
+            <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                    <div>
+                        <div class="font-medium">خصم 20% - مطعم صحي</div>
+                        <div class="text-sm text-gray-600">🪙 50 عملة</div>
+                    </div>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded text-sm">استبدل</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                    <div>
+                        <div class="font-medium">عضوية نادي رياضي</div>
+                        <div class="text-sm text-gray-600">🪙 200 عملة</div>
+                    </div>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded text-sm">استبدل</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                    <div>
+                        <div class="font-medium">كتاب تطوير الذات</div>
+                        <div class="text-sm text-gray-600">🪙 100 عملة</div>
+                    </div>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded text-sm">استبدل</button>
+                </div>
+            </div>
+            <button id="closeRewardBtn" class="w-full mt-4 bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold">
+                إغلاق
+            </button>
+        </div>
+    </div>
+
+    <!-- Journey Modal (v3) -->
+    <div id="journeyModal" class="journey-modal">
+        <div class="journey-modal-content">
+            <div class="journey-modal-header">
+                <div class="journey-modal-title">رحلة التعافي من التدخين</div>
+                <button class="close-journey-modal" id="closeJourneyModal">✕</button>
+            </div>
+            
+            <div class="journey-container">
+                <div class="help-section">
+                    <i class="fas fa-info-circle"></i>
+                    <div class="help-text">انقر على المحطات بالترتيب لمتابعة رحلتك والتعرف على كل مرحلة</div>
+                </div>
+                
+                <div class="timer-section">
+                    <div class="timer-container">
+                        <div class="timer-circle">
+                            <div class="timer-days" id="timer-days">1</div>
+                            <div class="timer-hours" id="timer-hours">00:00:00</div>
+                        </div>
+                        <div class="timer-label">الوقت المتبقي للمحطة التالية</div>
+                    </div>
+                    <button class="reset-btn" id="reset-btn">
+                        <i class="fas fa-redo"></i> إعادة التعيين
+                    </button>
+                </div>
+                
+                <div class="current-station" id="current-station">المحطة الحالية: محطة الانطلاق</div>
+                
+                <section class="map-section">
+                    <h2 class="map-title">خريطة رحلتك نحو التعافي</h2>
+                    <div class="map-container">
+                        <div class="journey-map">
+                            <div class="map-background"></div>
+                            <div class="map-terrain"></div>
+                            <div class="map-mountains"></div>
+                            <div class="map-river"></div>
+                            
+                            <svg class="map-path" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path class="path-line" d="M5,95 C15,85 25,75 35,65 45,55 55,45 65,35 75,25 85,15 95,5" />
+                            </svg>
+                            
+                            <div class="map-points">
+                                <!-- Points will be added dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="story-section">
+                    <h3 class="story-title">
+                        <i class="fas fa-book-open"></i> قصة اليوم
+                    </h3>
+                    <div class="story-content" id="story-content">
+                        <!-- Story content will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="questions-container">
+                    <h3 class="questions-title">
+                        <i class="fas fa-question-circle"></i> أسئلة المحطة
+                    </h3>
+                    
+                    <div id="questions-content">
+                        <!-- Questions will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn" id="prev-btn">
+                        <i class="fas fa-home"></i> العودة للرئيسية
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="congratulations" id="congratulations">
+        <div class="congratulations-content">
+            <h2>مبروك! لقد أكملت رحلتك بنجاح</h2>
+            <p>لقد أنهيت رحلة التعافي من التدخين بنجاح. خلال هذه الرحلة، تعلمت كيفية مقاومة الرغبة في التدخين، وتخطي التحديات، واكتساب عادات صحية جديدة. تذكر أن هذه ليست النهاية، بل بداية لحياة جديدة خالية من التدخين. استمر في استخدام الاستراتيجيات التي تعلمتها وابقَ قوياً في وجه التحديات المستقبلية.</p>
+            <button class="close-btn" id="close-btn">متابعة</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced App State with AI features
+        let appState = {
+            userName: localStorage.getItem('userName') || null,
+            isRegistered: localStorage.getItem('isRegistered') === 'true',
+            quitDate: localStorage.getItem('quitDate') || null,
+            cigarettesPerDay: parseInt(localStorage.getItem('cigarettesPerDay')) || 20,
+            pricePerPack: parseFloat(localStorage.getItem('pricePerPack')) || 15,
+            currency: localStorage.getItem('currency') || 'SAR',
+            cigarettesPerPack: parseInt(localStorage.getItem('cigarettesPerPack')) || 20,
+            level: parseInt(localStorage.getItem('level')) || 1,
+            xp: parseInt(localStorage.getItem('xp')) || 0,
+            coins: parseInt(localStorage.getItem('coins')) || 0,
+            cravingTimes: JSON.parse(localStorage.getItem('cravingTimes')) || [],
+            achievements: JSON.parse(localStorage.getItem('achievements')) || [],
+            treeGrowth: parseInt(localStorage.getItem('treeGrowth')) || 0,
+            lastTreeStage: parseInt(localStorage.getItem('lastTreeStage')) || 0,
+            mood: localStorage.getItem('mood') || 'neutral',
+            // New state for meditation sessions
+            meditationSessions: JSON.parse(localStorage.getItem('meditationSessions')) || Array(10).fill(0).map(() => ({ completed: false, progress: 0 }))
+        };
+
+        // AI Insights
+        const aiInsights = [
+            'أقوى رغباتك تحدث عادة في المساء. جهز نشاطاً بديلاً!',
+            'لاحظت تحسناً في مزاجك خلال الأسبوع الماضي. استمر!',
+            'معدل ضربات قلبك تحسن بنسبة 8% منذ الإقلاع',
+            'أفضل أوقاتك هي الصباح الباكر. استغلها للرياضة!',
+            'تشرب الماء أكثر في الأيام الصعبة. هذا ممتاز!',
+            'رفيق الإقلاع يساعدك كثيراً. حافظ على التواصل'
+        ];
+
+        // Achievements system
+        const achievements = [
+            { id: 'first_hour', name: 'الساعة الأولى', icon: '⏰', xp: 10, coins: 5, achieved: false },
+            { id: 'first_day', name: 'اليوم الأول', icon: '🌅', xp: 50, coins: 20, achieved: false },
+            { id: 'first_week', name: 'الأسبوع الأول', icon: '📅', xp: 200, coins: 100, achieved: false },
+            { id: 'water_master', name: 'خبير الماء', icon: '💧', xp: 30, coins: 15, achieved: false },
+            { id: 'breathing_expert', name: 'خبير التنفس', icon: '🧘‍♂️', xp: 40, coins: 25, achieved: false },
+            { id: 'community_helper', name: 'مساعد المجتمع', icon: '🤝', xp: 60, coins: 30, achieved: false }
+        ];
+
+        // Tree growth stages with detailed progression
+        const treeStages = [
+            { emoji: '🌱', name: 'بذرة', minMinutes: 0 },
+            { emoji: '🌿', name: 'برعم', minMinutes: 60 },      // 1 hour
+            { emoji: '🪴', name: 'نبتة صغيرة', minMinutes: 360 },   // 6 hours
+            { emoji: '🌳', name: 'شجرة صغيرة', minMinutes: 1440 },  // 1 day
+            { emoji: '🌲', name: 'شجرة كبيرة', minMinutes: 10080 }, // 1 week
+            { emoji: '🎋', name: 'شجرة قوية', minMinutes: 43200 },  // 1 month
+            { emoji: '🌴', name: 'شجرة عملاقة', minMinutes: 129600 } // 3 months
+        ];
+
+        // Currency price options
+        const currencyPrices = {
+            SAR: [
+                { value: 10, label: '10 ريال' },
+                { value: 12, label: '12 ريال' },
+                { value: 15, label: '15 ريال' },
+                { value: 18, label: '18 ريال' },
+                { value: 20, label: '20 ريال' },
+                { value: 25, label: '25 ريال' },
+                { value: 30, label: '30+ ريال' }
+            ],
+            EGP: [
+                { value: 25, label: '25 جنيه' },
+                { value: 30, label: '30 جنيه' },
+                { value: 35, label: '35 جنيه' },
+                { value: 40, label: '40 جنيه' },
+                { value: 45, label: '45 جنيه' },
+                { value: 50, label: '50 جنيه' },
+                { value: 60, label: '60+ جنيه' }
+            ],
+            USD: [
+                { value: 3, label: '$3' },
+                { value: 4, label: '$4' },
+                { value: 5, label: '$5' },
+                { value: 6, label: '$6' },
+                { value: 7, label: '$7' },
+                { value: 8, label: '$8' },
+                { value: 10, label: '$10+' }
+            ]
+        };
+
+        // Currency symbols
+        const currencySymbols = {
+            SAR: 'ر.س',
+            EGP: 'ج.م',
+            USD: '$'
+        };
+
+        // Meditation Sessions - 10 sessions with 10 questions each
+        const meditationSessionsData = [
+            {
+                title: "الجلسة الأولى: فهم دوافع التدخين",
+                questions: [
+                    "ما الذي يجعلك تشعل سيجارة في الأوقات العادية؟",
+                    "ما هي المشاعر التي تسبق عادة إشعال السيجارة؟",
+                    "هل هناك مواقف محددة تدفعك للتدخين أكثر من غيرها？",
+                    "ما الذي تعتقد أن السيجارة تقدمه لك في هذه اللحظات؟",
+                    "كيف تشعر بعد الانتهاء من السيجارة؟",
+                    "هل حاولت من قبل أن تتخيل حياتك بدون تدخين؟",
+                    "ما هي أقدم ذكرى لديك عن التدخين؟",
+                    "ما هو أكبر مخاوفك من الإقلاع عن التدخين؟",
+                    "إذا كانت السيجارة تستطيع التحدث، فماذا ستقول لك؟",
+                    "ما هو الشيء الوحيد الذي تود تغييره في علاقتك مع التدخين؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على فهم دوافعك العميقة للتدخين. فالتدخين ليس مجرد عادة، بل هو استجابة لمشاعر وأفكار معينة. عندما تتعرف على هذه الدوافع، يمكنك البدء في كسر الحلقة التلقائية التي تدفعك للتدخين."
+            },
+            {
+                title: "الجلسة الثانية: تفكيك أوهام التدخين",
+                questions: [
+                    "ما هي المعتقدات التي تدفعك للاعتقاد أن التدخين مفيد لك؟",
+                    "هل سبق وشعرت أن السيجارة خذلتك ولم تمنحك ما كنت تتوقعه؟",
+                    "ما هي الحقيقة حول فكرة أن التدخين يهدئ الأعصاب؟",
+                    "كيف كان شعورك قبل أن تدخن أول سيجارة في حياتك؟",
+                    "ما الذي تغير حقاً بعد أن أصبحت مدخناً؟",
+                    "إذا كان صديقك يبرر التدخين بنفس أسبابك، ماذا تقول له؟",
+                    "ما هي البدائل الحقيقية للتدخين التي يمكن أن تمنحك الراحة؟",
+                    "كم من المرات شعرت بالندم بعد التدخين？",
+                    "ما هي الأوهام التي تبنيها حول السيجارة لتبرير الاستمرار؟",
+                    "إذا لم تكن التكلفة الصحية موجودة، هل ستستمر في التدخين؟"
+                ],
+                message: "تهدف هذه الجلسة إلى تفكيك الأوهام والمعتقدات الخاطئة المرتبطة بالتدخين. فالكثير منا يبني قناعات غير حقيقية حول فوائد التدخين، بينما في الحقيقة كل هذه الفوائد وهمية. السيجارة لا تحل المشاكل، بل تضيف مشاكل جديدة."
+            },
+            {
+                title: "الجلسة الثالثة: إعادة تعريف المتعة والاسترخاء",
+                questions: [
+                    "ما هي الأنشطة الأخرى التي تمنحك متعة حقيقية غير التدخين؟",
+                    "كيف يمكنك إعادة تعريف مفهوم الاسترخاء بدون سجائر؟",
+                    "ما هي اللحظات التي تشعر فيها بالسعادة الحقيقية بدون تدخين؟",
+                    "كيف كان استرخاؤك قبل أن تبدأ التدخين؟",
+                    "ما هي الوسائل الصحية التي يمكن أن تحقق لك الاسترخاء؟",
+                    "هل تعتقد أن المتعة من التدخين حقيقية أم وهمية؟",
+                    "ما هي التكلفة الحقيقية للمتعة التي تظن أن السيجارة تمنحك إياها؟",
+                    "كيف ستبدو حياتك إذا استبدلت تدخين السجائر بأنشطة ممتعة حقيقية؟",
+                    "ما هو الشيء الذي تفتقده بسبب إنفاق وقتك ومالك على التدخين؟",
+                    "إذا كان لديك ساعة إضافية يومياً دون تدخين، كيف ستقضيها؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على إعادة تعريف مفهومي المتعة والاسترخاء. فالتدخين يسرق منك القدرة على الاستمتاع باللحظات البسيطة ويستبدلها بإدمان لا ينتهي. المتعة الحقيقية تكمن في الحياة نفسها، وليس في مادة سامة تدمر صحتك."
+            },
+            {
+                title: "الجلسة الرابعة: تحليل التكلفة الحقيقية",
+                questions: [
+                    "ما هي التكلفة المالية الحقيقية للتدخين في حياتك؟",
+                    "كم من الوقت تقضيه في التدخين يومياً؟ ما الذي تخسره بهذا الوقت؟",
+                    "ما هي الفرص التي فوتتها بسبب التدخين؟",
+                    "كيف أثر التدخين على علاقاتك الشخصية؟",
+                    "ما هي التكلفة الصحية التي تدفعها الآن بسبب التدخين؟",
+                    "ما هي الأحلام التي تأجلت بسبب إنفاق المال على السجائر؟",
+                    "كيف سيبدو وضعك المالي إذا لم تكن تدخن؟",
+                    "ما هي الذكريات التي ضاعت بسبب انشغالك بالتدخين？",
+                    "إذا استثمرت أموال السجائر في شيء مفيد، ما الذي كان سيتحقق؟",
+                    "ما هو الثمن العاطفي الذي تدفعه للتدخين؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على رؤية التكلفة الحقيقية للتدخين. فالتدخين لا يكلفك المال فحسب، بل يكلفك صحتك ووقتك وعلاقاتك وأحلامك. عندما ترى هذه التكاليف بوضوح، ستصبح عملية الإقلاع أسهل بكثير."
+            },
+            {
+                title: "الجلسة الخامسة: بناء هوية غير مدخن",
+                questions: [
+                    "من أنت بدون سيجارة؟",
+                    "ما هي الصفات التي تريد أن يتميز بها الشخص غير المدخن؟",
+                    "كيف تريد أن يراك الآخرون بعد الإقلاع عن التدخين؟",
+                    "ما هي القيم التي تمثلها كشود غير مدخن؟",
+                    "ما هي الهوايات والاهتمامات التي يمكن أن تحل محل التدخين؟",
+                    "كيف ستصف نفسك بعد أن أصبحت غير مدخن؟",
+                    "ما هي الإنجازات التي ستفتخر بها كشود غير مدخن؟",
+                    "كيف ستدافع عن هويتك الجديدة كغير مدخن؟",
+                    "ما هي الصورة الذهنية التي تريد بناءها عن نفسك بدون تدخين؟",
+                    "من يكون النموذج الملهم لك كشود غير مدخن؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على بناء هوية جديدة كشود غير مدخن. فالهوية هي الأساس الذي تبني عليه سلوكك. عندما ترى نفسك كشود غير مدخن، ستصبح أفعالك تلقائياً متوافقة مع هذه الهوية الجديدة."
+            },
+            {
+                title: "الجلسة السادسة: مواجهة محفزات التدخين",
+                questions: [
+                    "ما هي المواقف التي تدفعك للرغبة في التدخين؟",
+                    "كيف يمكنك تعديل روتينك اليومي لتجنب محفزات التدخين؟",
+                    "ما هي الاستراتيجيات التي يمكنك استخدامها عند مواجهة الرغبة الشديدة؟",
+                    "كيف تتعامل مع الضغوط الاجتماعية للتدخين؟",
+                    "ما هي البدائل الصحية التي يمكنك تبنيها عند الشعور بالرغبة؟",
+                    "كيف يمكنك تحويل المحفزات إلى فرص للتمسك بعدم التدخين؟",
+                    "ما هي الخطط الاحتياطية التي وضعتها لمواجهة اللحظات الصعبة؟",
+                    "كيف ستتعامل مع الإغراءات في المناسبات الاجتماعية؟",
+                    "ما هي التغييرات البيئية التي يمكنك إجراؤها لتقليل المحفزات؟",
+                    "كيف يمكنك تحويل ضغوط التدخين إلى مصادر قوة؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على التعرف على محفزات التدخين ووضع خطة فعالة لمواجهتها. المعرفة القوية بمحفزاتك وكيفية التعامل معها هي سلاحك الأقوى في رحلة الإقلاع عن التدخين."
+            },
+            {
+                title: "الجلسة السابعة: التعافي الجسدي والعقلي",
+                questions: [
+                    "ما هي التغيرات الإيجابية التي لاحظتها في جسدك منذ بدء الإقلاع？",
+                    "كيف تحسنت صحتك النفسية بعد التوقف عن التدخين؟",
+                    "ما هي علامات التعافي التي تنتظرها بفارغ الصبر？",
+                    "كيف ستحتفل بكل مرحلة من مراحل التعافي？",
+                    "ما هي الفحوصات الصحية التي تخطط لإجرائها لمتابعة تعافيك？",
+                    "كيف ستستعيد لياقتك البدنية بعد الإقلاع？",
+                    "ما هي التغيرات في حاستي الشم والتذوق التي لاحظتها？",
+                    "كيف تحسنت طاقتك ونشاطك اليومي？",
+                    "ما هي الخطط لتعزيز صحتك بعد الإقلاع？",
+                    "كيف ستعوض جسمك عن سنوات التدخين؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على تقدير عملية التعافي الجسدي والعقلي التي يمر بها جسمك بعد الإقلاع عن التدخين. كل يوم بدون تدخين هو انتصار لصحتك وفرصة لجسمك ليعيد بناء نفسه ويتعافى من آثار السنوات الماضية."
+            },
+            {
+                title: "الجلسة الثامنة: بناء نظام دعم قوي",
+                questions: [
+                    "من هم الأشخاص الداعمون لك في رحلة الإقلاع؟",
+                    "كيف يمكنك بناء شبكة دعم أقوى؟",
+                    "ما هي أنواع الدعم التي تحتاجها في الأوقات الصعبة？",
+                    "كيف يمكنك مساعدة الآخرين في رحلتهم للإقلاع؟",
+                    "ما هي المجتمعات أو المجموعات التي يمكن أن تنضم إليها لدعم مسيرتك？",
+                    "كيف ستتعامل مع الأشخاص غير الداعمين？",
+                    "ما هي طرق التواصل الفعالة لطلب الدعم عندما تحتاجه？",
+                    "كيف يمكنك تحويل تجربتك إلى مصدر دعم للآخرين？",
+                    "ما هي الكلمات التشجيعية التي تساعدك في اللحظات الصعبة？",
+                    "كيف ستحتفل بنجاحاتك مع نظام الدعم الخاص بك؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على بناء نظام دعم قوي لرحلة الإقلاع. لا أحد يستطيع أن ينجح بمفرده، والدعم الاجتماعي هو أحد أقوى العوامل المساعدة في الإقلاع الناجح عن التدخين. احط نفسك بأشخاص يدعمونك ويفهمون ما تمر به."
+            },
+            {
+                title: "الجلسة التاسعة: التخطيط لمستقبل بدون تدخين",
+                questions: [
+                    "ما هي أهدافك الصحية للخمس سنوات القادمة بدون تدخين？",
+                    "كيف ستحمي نفسك من الانتكاسة في المستقبل？",
+                    "ما هي الخطط البديلة إذا واجهتك صعوبات？",
+                    "كيف ستحتفل بمرور سنة كاملة بدون تدخين？",
+                    "ما هي المهارات الجديدة التي تريد تعلمها لتحل محل الوقت الذي كان يضيع في التدخين？",
+                    "كيف ستنشر رسالة الإقلاع عن التدخين للآخرين？",
+                    "ما هي الأحلام التي ستتحقق الآن بعد توفير المال والوقت？",
+                    "كيف ستصبح قدوة للآخرين في الإقلاع عن التدخين？",
+                    "ما هي خطط السفر والأنشطة التي ستقوم بها الآن بعد التحرر من التدخين？",
+                    "كيف ستصف حياتك بعد خمس سنوات من الآن بدون تدخين؟"
+                ],
+                message: "تهدف هذه الجلسة إلى مساعدتك على التخطيط لمستقبل مشرق بدون تدخين. المستقبل يبدأ اليوم، وكل خطة تضعها الآن تقربك من حياة أكثر صحة وسعادة. التخطيط الجيد يحول الأحلام إلى أهداف قابلة للتحقيق."
+            },
+            {
+                title: "الجلسة العاشرة: التحرر النهائي والاحتفال",
+                questions: [
+                    "ما هو المعنى الحقيقي للتحرر من التدخين بالنسبة لك？",
+                    "ما هي الدروس التي تعلمتها من رحلة الإقلاع？",
+                    "كيف تغيرت نظرتك للحياة بعد التحرر من التدخين？",
+                    "ما هي الهبات غير المتوقعة التي جنتها من الإقلاع？",
+                    "كيف ستستخدم قوة الإرادة التي طورتها في مجالات أخرى من حياتك？",
+                    "ما هي الرسالة التي تريد توجيهها لنسخةك القديمة المدخنة？",
+                    "كيف ستحافظ على تحررك على المدى الطويل？",
+                    "ما هي الطقوس الجديدة التي ستتبناها للاحتفال بحريتك？",
+                    "كيف ستشكر نفسك على إكمال هذه الرحلة الصعبة？",
+                    "ما هي الكنوز التي اكتشفتها في نفسك خلال هذه الرحلة؟"
+                ],
+                message: "تهدف هذه الجلسة إلى الاحتفال بنجاحك في التحرر من التدخين وتثبيت هويتك الجديدة كشود غير مدخن. لقد أكملت رحلة شاقة واستعدت السيطرة على حياتك. هذا الإنجاز يستحق الاحتفاء والاعتزاز، وهو بداية لحياة جديدة مليئة بالصحة والحرية."
+            }
+        ];
+
+        // Meditation state
+        let meditationState = {
+            currentSession: 0,
+            currentQuestion: 0,
+            answers: []
+        };
+
+        // Journey v3 state
+        let journeyState = {
+            currentDay: 1,
+            journeyStartTime: null
+        };
+
+        // Map points data - evenly distributed along the path
+        const journeyPoints = [
+            { 
+                day: 1, 
+                x: 5, 
+                y: 95, 
+                title: "محطة الانطلاق", 
+                story: "كان أحمد يجلس في عيادة الطبيب، يسمع كلمات تثقب قلبه: 'إذا لم تتوقف عن التدخين الآن، فلن ترى ابنك يكبر'. نظر إلى صورة صغيرة لطفله في محفظته، عيناه تلمعان بدموع صامتة. اليوم هو اليوم الذي سيغير فيه حياته إلى الأبد.",
+                questions: [
+                    {
+                        text: "ما هي أكثر أوقات اليوم التي تشعر فيها برغبة في التدخين؟",
+                        options: ["بعد الوجبات", "أثناء فترات التوتر", "عند الاجتماع مع الأصدقاء", "أثناء القيادة"]
+                    },
+                    {
+                        text: "ما هو أكبر تحدي تتوقعه في رحلة الإقلاع عن التدخين؟",
+                        options: ["الأعراض الانسحابية", "الضغوط الاجتماعية", "العادات المرتبطة بالتدخين", "التعامل مع التوتر"]
+                    }
+                ]
+            },
+            { 
+                day: 2, 
+                x: 15, 
+                y: 85, 
+                title: "محطة العزيمة", 
+                story: "استيقظ أحمد على عادة الصباح القديمة، لكنه هذه المرة قاوم الرغبة. ذهب إلى المطبخ ليجد زوجته قد جهزت له فطوراً خاصاً مع رسالة صغيرة: 'أنت أقوى مما تظن'. ابتسم للمرة الأولى منذ أيام وشعر بأن المعركة تستحق الخوض.",
+                questions: [
+                    {
+                        text: "كيف تشعر بعد مرور أول يوم بدون تدخين؟",
+                        options: ["متفائل", "متوتر", "مرهق", "طبيعي"]
+                    },
+                    {
+                        text: "ما هي الاستراتيجية التي ستتبعها لمقاومة الرغبة في التدخين؟",
+                        options: ["شرب الماء", "ممارسة الرياضة", "التنفس العميق", "إلهاء النفس بنشاط آخر"]
+                    }
+                ]
+            },
+            { 
+                day: 3, 
+                x: 25, 
+                y: 75, 
+                title: "محطة التحدي", 
+                story: "في العمل، شعر أحمد بضغط هائل. زميله عرض عليه سيجارة وقال: 'تعال، واحدة فقط لن تضر'. أغلق عينيه وتذكر وجه طفله، ثم هز رأسه رافضاً. في تلك اللحظة، أدرك أن رحلته ليست فقط عن الإقلاع عن التدخين، بل عن اكتشاف قوة إرادته المدفونة منذ سنوات.",
+                questions: [
+                    {
+                        text: "هل لاحظت أي تحسن في حاسة التذوق أو الشم؟",
+                        options: ["نعم، تحسن ملحوظ", "قليل من التحسن", "لم ألاحظ فرقًا", "ليس بعد"]
+                    },
+                    {
+                        text: "ما هو أكبر إنجاز حققته حتى الآن في رحلتك؟",
+                        options: ["مقاومة الرغبة الشديدة", "النوم بشكل أفضل", "تحسن المزاج", "توفير المال"]
+                    }
+                ]
+            },
+            { 
+                day: 4, 
+                x: 35, 
+                y: 65, 
+                title: "محطة الأمل", 
+                story: "اصطحب أحمد ابنه إلى الحديقة لأول مرة منذ بدء رحلته. لاحظ أنه يستطيع الركض واللعب معه دون أن يلهث بعد دقائق. نظر إليه ابنه مبتسماً وقال: 'أبي، أنت أفضل أبي في العالم'. في تلك اللحظة، أيقن أن كل معاناة تستحق أن يراه طفله بهذه السعادة.",
+                questions: [
+                    {
+                        text: "ما هو الشعور الأقوى الذي شعرت به اليوم؟",
+                        options: ["الفخر", "التحدي", "الضعف", "القوة"]
+                    },
+                    {
+                        text: "كيف غيرت رحلتك علاقتك بأسرتك؟",
+                        options: ["أصبحت أكثر قرباً", "لا توجد تغييرات كبيرة", "أصبحت أكثر توتراً", "ليس بعد"]
+                    }
+                ]
+            },
+            { 
+                day: 5, 
+                x: 45, 
+                y: 55, 
+                title: "محطة الإرادة", 
+                story: "واجه أحمد أحد أصعب التحديات عندما انفجرت إحدى السيارات في مكان العمل وشعر الجميع بالتوتر. بدأ زملاؤه في التدخين بقلق، لكنه هذه المرة فضل أن يتنزه حول المبنى ويتنفس بعمق. عندما عاد، كان فخوراً بنفسه أكثر من أي وقت مضى.",
+                questions: [
+                    {
+                        text: "هل لاحظت أي تحسن في صحتك التنفسية؟",
+                        options: ["نعم، تحسن ملحوظ", "قليل من التحسن", "لم ألاحظ فرقًا", "ليس بعد"]
+                    },
+                    {
+                        text: "ما هي أكثر استراتيجية فعالة استخدمتها لمقاومة التدخين؟",
+                        options: ["تجنب المحفزات", "ممارسة الرياضة", "الدعم الاجتماعي", "التأمل"]
+                    }
+                ]
+            },
+            { 
+                day: 6, 
+                x: 55, 
+                y: 45, 
+                title: "محطة التأمل", 
+                story: "زار أحمد صديقاً قديماً في المستشفى يعاني من سرطان الرئة. رأى المعانة في عيني صديقه وتأثر بشدة. في طريق العودة، مر ببائع السجائر الذي كان يزوره يومياً، لكنه هذه المرة مر وكأنه لا يعرفه. كان يتغير من الداخل، وكان التغيير أجمل مما توقع.",
+                questions: [
+                    {
+                        text: "ما هو الدافع الأقوى الذي يبقيك مستمراً في رحلتك؟",
+                        options: ["الصحة", "العائلة", "الثقة بالنفس", "التوفير المادي"]
+                    },
+                    {
+                        text: "كيف تخطط للحفاظ على تقدمك بعد انتهاء الرحلة？",
+                        options: ["الاستمرار في تجنب المحفزات", "ممارسة الرياضة بانتظام", "البحث عن دعم مستمر", "كل ما سبق"]
+                    }
+                ]
+            },
+            { 
+                day: 7, 
+                x: 65, 
+                y: 35, 
+                title: "محطة الانتصار", 
+                story: "احتفلت الأسرة بأسبوع كامل بدون تدخين. جهزت الزوجة كعكة صغيرة وكتبت عليها 'أسبوع من الانتصارات'. نظر أحمد إلى عائلته وابتسم، مدركاً أن هذه المعركة لم يكن يخوضها بمفرده. كان دعمهم هو الوقود الذي يدفعه للأمام في الأيام الصعبة.",
+                questions: [
+                    {
+                        text: "ما هو أكبر تغيير لاحظته في نفسك هذا الأسبوع؟",
+                        options: ["تحسن الطاقة", "تحسن المزاج", "توفير المال", "الثقة بالنفس"]
+                    },
+                    {
+                        text: "كيف كان دعم المحيطين بك خلال هذه الرحلة؟",
+                        options: ["دعم ممتاز", "دعم جيد", "دعم محدود", "بدون دعم يذكر"]
+                    }
+                ]
+            },
+            { 
+                day: 8, 
+                x: 75, 
+                y: 25, 
+                title: "محطة الإلهام", 
+                story: "بدأ أحمد يلاحظ تغيرات إيجابية في جسده. لم يعد يستيقظ بالسعال الصباحي، وأصبحت رائحته أفضل. في العمل، بدأ زملاؤه يلاحظون التغير الإيجابي فيه، بل أن أحدهم سأله عن نصائح للإقلاع عن التدخين. أصبح مصدر إلهام للآخرين دون أن يدري.",
+                questions: [
+                    {
+                        text: "ما هي الفوائد غير المتوقعة التي لاحظتها خلال رحلتك؟",
+                        options: ["تحسن العلاقات", "زيادة الإنتاجية", "اكتشاف هوايات جديدة", "كل ما سبق"]
+                    },
+                    {
+                        text: "كيف تخطط لمواجهة التحديات المستقبلية؟",
+                        options: ["الاستعانة بالدعم", "تذكر أسباب الإقلاع", "ممارسة تقنيات الاسترخاء", "كل ما سبق"]
+                    }
+                ]
+            },
+            { 
+                day: 9, 
+                x: 85, 
+                y: 15, 
+                title: "محطة التجدد", 
+                story: "واجه أحمد موقفاً صعباً آخر عندما تشاجر مع زميل في العمل. في الماضي، كان سيهرب إلى السيجارة لتخفيف التوتر، لكنه هذه المرة فضل أن يتحدث مع صديق مقرب. اكتشف أن الحديث عن المشاكل أكثر فاعلية من الهروب منها بالتدخين.",
+                questions: [
+                    {
+                        text: "ما هي الاستراتيجيات الجديدة التي تعلمتها للتعامل مع التوتر؟",
+                        options: ["التنفس العميق", "التحدث مع الآخرين", "ممارسة الرياضة", "كل ما سبق"]
+                    },
+                    {
+                        text: "كيف أصبحت نظرتك إلى التدخين الآن مقارنة بالبداية؟",
+                        options: ["أرى أنه إدمان ضار", "أرى أنه عادة يمكن التغلب عليها", "أرى أنه هروب من المشاكل", "كل ما سبق"]
+                    }
+                ]
+            },
+            { 
+                day: 10, 
+                x: 95, 
+                y: 5, 
+                title: "محطة النجاح", 
+                story: "ها هو أحمد يصل إلى المحطة الأخيرة من رحلته الأولى. وقف أمام المرآة ينظر إلى نفسه، رأى شخصاً مختلفاً: أكثر صحة، ثقة، وقوة. اتصل بالطبيب وأخبره بنجاحه، ثم اشترى هدية لعائلته كرمز للامتنان على دعمهم. كانت البداية فقط لرحلة حياة جديدة.",
+                questions: [
+                    {
+                        text: "ما هو الشعور الغالب عليك الآن بعد إكمال الرحلة؟",
+                        options: ["الفخر", "الامتنان", "التحدي", "الرضا"]
+                    },
+                    {
+                        text: "ما هي خططك المستقبلية للحفاظ على نمط الحياة الجديد؟",
+                        options: ["الاستمرار في تجنب التدخين", "مساعدة الآخرين في رحلتهم", "ممارسة الرياضة بانتظام", "كل ما سبق"]
+                    }
+                ]
+            }
+        ];
+
+        // Check registration status and show/hide modal
+        function checkRegistration() {
+            const modal = document.getElementById('registrationModal');
+            const mainContent = document.querySelector('.max-w-md.mx-auto.p-4');
+            
+            if (!appState.isRegistered || !appState.userName || !appState.quitDate) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                if (mainContent) mainContent.style.display = 'none';
+                
+                // Set default quit date to now
+                const now = new Date();
+                const localDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+                document.getElementById('quitDateTime').value = localDateTime;
+                
+                // Setup currency change handler
+                setupCurrencyHandler();
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                if (mainContent) mainContent.style.display = 'block';
+                
+                // Show welcome message
+                document.getElementById('displayUserName').textContent = appState.userName;
+                document.getElementById('welcomeMessage').classList.remove('hidden');
+                
+                // Show logout button
+                document.getElementById('logoutBtn').classList.remove('hidden');
+                
+                // Initialize app
+                initApp();
+            }
+        }
+
+        // Setup currency selection handler
+        function setupCurrencyHandler() {
+            const currencySelect = document.getElementById('currency');
+            const priceSelect = document.getElementById('pricePerPack');
+            
+            currencySelect.addEventListener('change', function() {
+                const selectedCurrency = this.value;
+                priceSelect.innerHTML = '<option value="">اختر السعر</option>';
+                
+                if (selectedCurrency && currencyPrices[selectedCurrency]) {
+                    currencyPrices[selectedCurrency].forEach(price => {
+                        const option = document.createElement('option');
+                        option.value = price.value;
+                        option.textContent = price.label;
+                        priceSelect.appendChild(option);
+                    });
+                }
+            });
+        }
+
+        // Handle registration form submission
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            const userName = document.getElementById('userName').value.trim();
+            const quitDateTime = document.getElementById('quitDateTime').value;
+            const cigarettesPerDay = parseInt(document.getElementById('cigarettesPerDay').value);
+            const currency = document.getElementById('currency').value;
+            const pricePerPack = parseFloat(document.getElementById('pricePerPack').value);
+            
+            if (!userName || !quitDateTime || !cigarettesPerDay || !currency || !pricePerPack) {
+                alert('يرجى ملء جميع الحقول');
+                return;
+            }
+            
+            // Update app state
+            appState.userName = userName;
+            appState.quitDate = new Date(quitDateTime).toISOString();
+            appState.cigarettesPerDay = cigarettesPerDay;
+            appState.currency = currency;
+            appState.pricePerPack = pricePerPack;
+            appState.isRegistered = true;
+            
+            // Reset other values for new user
+            appState.level = 1;
+            appState.xp = 0;
+            appState.coins = 0;
+            appState.achievements = [];
+            appState.cravingTimes = [];
+            
+            // Save to localStorage
+            saveState();
+            
+            // Show success message
+            showRegistrationSuccess();
+            
+            // Hide modal and show app
+            setTimeout(() => {
+                checkRegistration();
+            }, 2000);
+        }
+
+        // Show registration success animation
+        function showRegistrationSuccess() {
+            const modal = document.getElementById('registrationModal');
+            modal.innerHTML = `
+                <div class="bg-white bg-opacity-95 backdrop-blur-lg rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-white border-opacity-30">
+                    <div class="text-8xl mb-4 celebration animate-bounce">🎉</div>
+                    <h2 class="text-3xl font-bold bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent mb-3">مرحباً ${appState.userName}!</h2>
+                    <p class="text-gray-700 mb-4 text-lg font-medium">تم تسجيلك بنجاح</p>
+                    <div class="text-6xl mb-3 animate-pulse">🌱</div>
+                    <p class="text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">رحلتك للإقلاع بدأت الآن!</p>
+                    <div class="flex justify-center space-x-2 space-x-reverse mt-4">
+                        <span class="text-2xl animate-bounce" style="animation-delay: 0.1s">💪</span>
+                        <span class="text-2xl animate-bounce" style="animation-delay: 0.2s">❤️</span>
+                        <span class="text-2xl animate-bounce" style="animation-delay: 0.3s">🌟</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize enhanced app
+        function initApp() {
+            updateProgress();
+            updateAIInsights();
+            updateAchievements();
+            updateTreeGrowth();
+            updateSessionsProgress();
+
+            setInterval(updateProgress, 1000); // Update every second for real-time minutes
+            setInterval(updateAIInsights, 300000); // Update AI insights every 5 minutes
+        }
+
+        // Level system
+        function updateLevel() {
+            const newLevel = Math.floor(appState.xp / 100) + 1;
+            if (newLevel > appState.level) {
+                appState.level = newLevel;
+                showLevelUp();
+            }
+            
+            document.getElementById('userLevel').textContent = appState.level;
+            
+            const xpForCurrentLevel = (appState.level - 1) * 100;
+            const xpForNextLevel = appState.level * 100;
+            const progressPercent = ((appState.xp - xpForCurrentLevel) / (xpForNextLevel - xpForCurrentLevel)) * 100;
+            
+            document.getElementById('xpBar').style.width = `${progressPercent}%`;
+        }
+
+        // Show level up animation
+        function showLevelUp() {
+            const levelElement = document.getElementById('userLevel');
+            levelElement.classList.add('level-up');
+            setTimeout(() => levelElement.classList.remove('level-up'), 1000);
+        }
+
+        // AI Insights system
+        function updateAIInsights() {
+            const randomInsight = aiInsights[Math.floor(Math.random() * aiInsights.length)];
+            document.getElementById('aiInsightText').textContent = randomInsight;
+        }
+
+        // Achievements system
+        function checkAchievements(hours, days) {
+            achievements.forEach(achievement => {
+                if (!achievement.achieved) {
+                    let shouldAward = false;
+                    
+                    switch(achievement.id) {
+                        case 'first_hour':
+                            shouldAward = hours >= 1;
+                            break;
+                        case 'first_day':
+                            shouldAward = days >= 1;
+                            break;
+                        case 'first_week':
+                            shouldAward = days >= 7;
+                            break;
+                    }
+                    
+                    if (shouldAward) {
+                        awardAchievement(achievement);
+                    }
+                }
+            });
+        }
+
+        function awardAchievement(achievement) {
+            achievement.achieved = true;
+            appState.xp += achievement.xp;
+            appState.coins += achievement.coins;
+            
+            // Show achievement notification
+            showAchievementNotification(achievement);
+            updateAchievements();
+            saveState();
+        }
+
+        function showAchievementNotification(achievement) {
+            // Create a temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-6 py-3 rounded-lg shadow-lg z-50 celebration';
+            notification.innerHTML = `
+                <div class="text-center">
+                    <div class="text-2xl mb-1">${achievement.icon}</div>
+                    <div class="font-semibold">${achievement.name}</div>
+                    <div class="text-sm">+${achievement.xp} XP, +${achievement.coins} 🪙</div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
+
+        function updateAchievements() {
+            const container = document.getElementById('achievementsList');
+            container.innerHTML = '';
+            
+            achievements.slice(0, 3).forEach(achievement => {
+                const div = document.createElement('div');
+                div.className = `flex items-center justify-between p-3 rounded-lg ${achievement.achieved ? 'bg-green-50 border border-green-200' : 'bg-gray-50 border border-gray-200'}`;
+                
+                div.innerHTML = `
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <span class="text-2xl">${achievement.icon}</span>
+                        <div>
+                            <div class="font-medium text-gray-800">${achievement.name}</div>
+                            <div class="text-sm text-gray-600">${achievement.xp} XP • ${achievement.coins} 🪙</div>
+                        </div>
+                    </div>
+                    <div class="text-2xl">
+                        ${achiement.achieved ? '✅' : '⏳'}
+                    </div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        // Update progress with XP and coins
+        function updateProgress() {
+            if (!appState.quitDate) return;
+            
+            const quitDate = new Date(appState.quitDate);
+            const now = new Date();
+            const timeDiff = now - quitDate;
+            
+            // Handle negative time (future quit date)
+            const totalMinutes = Math.max(0, Math.floor(timeDiff / (1000 * 60)));
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            const days = Math.floor(hours / 24);
+            
+            // Update time display with better formatting
+            if (days > 0) {
+                document.getElementById('timeClean').textContent = `${days}ي ${hours % 24}س ${minutes}د`;
+            } else if (hours > 0) {
+                document.getElementById('timeClean').textContent = `${hours}س ${minutes}د`;
+            } else {
+                document.getElementById('timeClean').textContent = `${minutes}د`;
+            }
+            
+            // Calculate money saved and cigarettes avoided with proper pack calculation
+            const cigarettesPerPack = 20; // Standard pack size
+            const cigarettesAvoided = Math.max(0, Math.floor(totalMinutes * (appState.cigarettesPerDay / (24 * 60))));
+            const packsAvoided = cigarettesAvoided / cigarettesPerPack;
+            const moneySaved = packsAvoided * appState.pricePerPack;
+            
+            const currencySymbol = currencySymbols[appState.currency] || 'ر.س';
+            document.getElementById('moneySaved').textContent = `${Math.max(0, moneySaved).toFixed(1)} ${currencySymbol}`;
+            document.getElementById('cigarettesAvoided').textContent = cigarettesAvoided;
+            
+            // Award XP and coins based on progress (more balanced)
+            const newXP = Math.floor(totalMinutes * 0.5); // More XP per minute
+            const newCoins = Math.floor(totalMinutes * 0.1); // More coins per minute
+            
+            if (newXP > appState.xp) {
+                appState.xp = newXP;
+                appState.coins = newCoins;
+            }
+            
+            // Always save state to ensure display updates
+            saveState();
+            
+            // Update all displays
+            checkAchievements(hours, days);
+            updateTreeGrowth(totalMinutes);
+        }
+
+        // Tree growth system with real-time progression
+        function updateTreeGrowth(totalMinutes) {
+            // Find current tree stage based on minutes
+            let currentStage = treeStages[0];
+            let nextStage = treeStages[1];
+            let stageIndex = 0;
+            
+            for (let i = 0; i < treeStages.length; i++) {
+                if (totalMinutes >= treeStages[i].minMinutes) {
+                    currentStage = treeStages[i];
+                    stageIndex = i;
+                    nextStage = treeStages[i + 1] || treeStages[i];
+                }
+            }
+            
+            // Calculate progress percentage within current stage
+            let progressPercent = 0;
+            if (nextStage && nextStage !== currentStage) {
+                const stageMinutes = nextStage.minMinutes - currentStage.minMinutes;
+                const currentProgress = totalMinutes - currentStage.minMinutes;
+                progressPercent = Math.min(100, (currentProgress / stageMinutes) * 100);
+            } else {
+                progressPercent = 100; // Max stage reached
+            }
+            
+            // Update tree display
+            document.getElementById('lifeTree').textContent = currentStage.emoji;
+            document.getElementById('treeLevel').textContent = stageIndex + 1;
+            document.getElementById('treeProgress').textContent = `${Math.floor(progressPercent)}%`;
+            
+            // Add tree growth animation when stage changes
+            if (appState.lastTreeStage !== stageIndex) {
+                const treeElement = document.getElementById('lifeTree');
+                treeElement.classList.add('tree-animation');
+                setTimeout(() => treeElement.classList.remove('tree-animation'), 2000);
+                
+                // Show stage up notification
+                if (appState.lastTreeStage !== undefined && stageIndex > appState.lastTreeStage) {
+                    showTreeGrowthNotification(currentStage);
+                }
+                
+                appState.lastTreeStage = stageIndex;
+                saveState();
+            }
+        }
+        
+        // Show tree growth notification
+        function showTreeGrowthNotification(stage) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-400 text-white px-6 py-3 rounded-lg shadow-lg z-50 celebration';
+            notification.innerHTML = `
+                <div class="text-center">
+                    <div class="text-3xl mb-1">${stage.emoji}</div>
+                    <div class="font-semibold">شجرتك نمت!</div>
+                    <div class="text-sm">${stage.name}</div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 4000);
+        }
+
+        // Save state to localStorage
+        function saveState() {
+            Object.keys(appState).forEach(key => {
+                if (typeof appState[key] === 'object') {
+                    localStorage.setItem(key, JSON.stringify(appState[key]));
+                } else {
+                    localStorage.setItem(key, appState[key]);
+                }
+            });
+        }
+
+        // Meditation Sessions System
+        function updateSessionsProgress() {
+            // Calculate overall progress
+            const totalQuestions = meditationSessionsData.length * 10;
+            let completedQuestions = 0;
+            
+            appState.meditationSessions.forEach(session => {
+                completedQuestions += session.progress;
+            });
+            
+            const overallProgress = (completedQuestions / totalQuestions) * 100;
+            
+            document.getElementById('overallProgressBar').style.width = `${overallProgress}%`;
+            document.getElementById('overallProgressText').textContent = `${Math.round(overallProgress)}%`;
+            
+            // Update sessions list
+            const sessionsList = document.getElementById('sessionsList');
+            sessionsList.innerHTML = '';
+            
+            meditationSessionsData.forEach((session, index) => {
+                const sessionProgress = appState.meditationSessions[index].progress;
+                const isCompleted = appState.meditationSessions[index].completed;
+                const isCurrent = !isCompleted && (index === 0 || appState.meditationSessions[index - 1].completed);
+                
+                const sessionElement = document.createElement('div');
+                sessionElement.className = `session-card p-4 rounded-xl border-2 ${isCompleted ? 'completed' : isCurrent ? 'current' : 'bg-gray-100'}`;
+                
+                sessionElement.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold text-gray-800">الجلسة ${index + 1}: ${session.title}</h4>
+                        <span class="text-sm ${isCompleted ? 'text-green-600' : isCurrent ? 'text-blue-600' : 'text-gray-500'}">
+                            ${isCompleted ? 'مكتملة' : isCurrent ? 'جارية' : 'مقفلة'}
+                        </span>
+                    </div>
+                    <div class="session-progress mb-2">
+                        <div class="session-progress-bar" style="width: ${sessionProgress * 10}%"></div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">${sessionProgress}/10 أسئلة</span>
+                        <button class="session-btn px-3 py-1 rounded text-sm ${isCompleted ? 'bg-green-100 text-green-800' : isCurrent ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-600'}">
+                            ${isCompleted ? 'معاينة' : isCurrent ? 'استمر' : 'ابدأ'}
+                        </button>
+                    </div>
+                `;
+                
+                const sessionButton = sessionElement.querySelector('.session-btn');
+                if (isCompleted || isCurrent) {
+                    sessionButton.addEventListener('click', () => {
+                        startMeditationSession(index);
+                    });
+                }
+                
+                sessionsList.appendChild(sessionElement);
+            });
+        }
+        
+        function startMeditationSession(sessionIndex) {
+            // Check if previous session is completed
+            if (sessionIndex > 0 && !appState.meditationSessions[sessionIndex - 1].completed) {
+                alert('يجب عليك إكمال الجلسة السابقة أولاً');
+                openSessionsModal();
+                return;
+            }
+            
+            meditationState.currentSession = sessionIndex;
+            meditationState.currentQuestion = appState.meditationSessions[sessionIndex].progress;
+            meditationState.answers = [];
+            
+            document.getElementById('sessionsModal').classList.add('hidden');
+            document.getElementById('meditationModal').classList.remove('hidden');
+            document.getElementById('questionsPhase').classList.remove('hidden');
+            document.getElementById('meditationPhase').classList.add('hidden');
+            
+            showCurrentQuestion();
+        }
+        
+        function showCurrentQuestion() {
+            const session = meditationSessionsData[meditationState.currentSession];
+            const questionNum = meditationState.currentQuestion;
+            
+            document.getElementById('sessionTitle').textContent = session.title;
+            document.getElementById('currentQuestionNum').textContent = questionNum + 1;
+            document.getElementById('questionText').textContent = session.questions[questionNum];
+            document.getElementById('answerInput').value = '';
+            document.getElementById('questionProgress').style.width = `${((questionNum + 1) / 10) * 100}%`;
+            
+            // Update button text for last question
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            if (questionNum === 9) {
+                nextBtn.textContent = 'إنهاء الجلسة 🧘‍♂️';
+            } else {
+                nextBtn.textContent = 'التالي';
+            }
+            
+            // Show/hide previous button
+            const prevBtn = document.getElementById('prevQuestionBtn');
+            if (questionNum > 0) {
+                prevBtn.classList.remove('hidden');
+            } else {
+                prevBtn.classList.add('hidden');
+            }
+        }
+        
+        function nextQuestion() {
+            const answer = document.getElementById('answerInput').value.trim();
+            if (!answer) {
+                alert('يرجى الإجابة على السؤال أولاً');
+                return;
+            }
+            
+            meditationState.answers.push(answer);
+            
+            // Update progress
+            const newProgress = meditationState.currentQuestion + 1;
+            appState.meditationSessions[meditationState.currentSession].progress = newProgress;
+            
+            if (newProgress === 10) {
+                // Mark session as completed
+                appState.meditationSessions[meditationState.currentSession].completed = true;
+                
+                // Show completion message
+                showSessionCompletion();
+            } else {
+                meditationState.currentQuestion = newProgress;
+                showCurrentQuestion();
+            }
+            
+            saveState();
+            updateSessionsProgress();
+        }
+        
+        function prevQuestion() {
+            if (meditationState.currentQuestion > 0) {
+                meditationState.currentQuestion--;
+                meditationState.answers.pop();
+                showCurrentQuestion();
+            }
+        }
+        
+        function showSessionCompletion() {
+            const session = meditationSessionsData[meditationState.currentSession];
+            
+            document.getElementById('questionsPhase').classList.add('hidden');
+            document.getElementById('meditationPhase').classList.remove('hidden');
+            
+            document.getElementById('completionTitle').textContent = `تهانينا! لقد أكملت ${session.title}`;
+            document.getElementById('sessionMessage').innerHTML = `
+                <p class="text-center text-lg font-medium text-pink-200 mb-4">${session.message}</p>
+                <div class="text-center text-6xl mb-4">🎉</div>
+            `;
+            
+            // Show next session button if there are more sessions
+            const nextSessionBtn = document.getElementById('nextSessionBtn');
+            if (meditationState.currentSession < meditationSessionsData.length - 1) {
+                nextSessionBtn.classList.remove('hidden');
+            } else {
+                nextSessionBtn.classList.add('hidden');
+            }
+        }
+        
+        function openSessionsModal() {
+            document.getElementById('sessionsModal').classList.remove('hidden');
+            updateSessionsProgress();
+        }
+        
+        function closeSessionsModal() {
+            document.getElementById('sessionsModal').classList.add('hidden');
+        }
+        
+        function backToSessions() {
+            document.getElementById('meditationModal').classList.add('hidden');
+            openSessionsModal();
+        }
+        
+        function startNextSession() {
+            if (meditationState.currentSession < meditationSessionsData.length - 1) {
+                startMeditationSession(meditationState.currentSession + 1);
+            }
+        }
+
+        function resetTree() {
+            if (confirm('هل تريد إعادة بناء الشجرة وتصفير جميع العدادات؟ سيتم تصفير العداد وبدء رحلة جديدة.')) {
+                // Reset quit date to now
+                appState.quitDate = new Date().toISOString();
+                appState.lastTreeStage = 0;
+                
+                // تصفير العدادات
+                appState.xp = 0;
+                appState.coins = 0;
+                appState.level = 1;
+                appState.achievements = achievements.map(a => ({...a, achieved: false}));
+                
+                // Save state
+                saveState();
+                
+                // Show success message
+                showResetSuccess();
+                
+                // Update display immediately
+                updateProgress();
+                updateTreeGrowth(0);
+                updateAchievements();
+            }
+        }
+
+        function showResetSuccess() {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-400 text-white px-6 py-3 rounded-lg shadow-lg z-50 celebration';
+            notification.innerHTML = `
+                <div class="text-center">
+                    <div class="text-3xl mb-1">🌱</div>
+                    <div class="font-semibold">تم إعادة البناء بنجاح!</div>
+                    <div class="text-sm">تم تصفير جميع العدادات</div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 4000);
+        }
+
+        function logout() {
+            if (confirm('هل تريد تسجيل الخروج؟ سيتم حذف جميع بياناتك المحلية.')) {
+                // Clear all data
+                localStorage.clear();
+                
+                // Reset app state
+                appState = {
+                    userName: null,
+                    isRegistered: false,
+                    quitDate: null,
+                    cigarettesPerDay: 20,
+                    pricePerPack: 15,
+                    currency: 'SAR',
+                    cigarettesPerPack: 20,
+                    level: 1,
+                    xp: 0,
+                    coins: 0,
+                    cravingTimes: [],
+                    achievements: [],
+                    treeGrowth: 0,
+                    lastTreeStage: 0,
+                    mood: 'neutral',
+                    meditationSessions: Array(10).fill(0).map(() => ({ completed: false, progress: 0 }))
+                };
+                
+                // Hide logout button
+                document.getElementById('logoutBtn').classList.add('hidden');
+                
+                // Reload page to restart
+                location.reload();
+            }
+        }
+
+        // Game Engine - محدث بالتصميم الجديد
+        class HeartDefenseGame {
+            constructor() {
+                this.canvas = document.getElementById('gameCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.canvas.width = 400;
+                this.canvas.height = 400;
+                
+                // حالة اللعبة
+                this.gameState = {
+                    level: 1,
+                    score: 0,
+                    lives: 3,
+                    isPlaying: false,
+                    cigarettes: [],
+                    particles: [],
+                    lastCigaretteSpawn: 0,
+                    gameSpeed: 1,
+                    levelStartTime: 0,
+                    levelDuration: 180000 // 3 دقائق (180000 مللي ثانية)
+                };
+                
+                // القلب في الأعلى
+                this.heart = {
+                    x: this.canvas.width / 2,
+                    y: 60,
+                    size: 50,
+                    health: 100,
+                    maxHealth: 100,
+                    pulseScale: 1
+                };
+                
+                // المسطرة الواقية - أفقية تحت القلب
+                this.shield = {
+                    x: this.canvas.width / 2 - 40,
+                    y: 150,
+                    width: 80,
+                    height: 15,
+                    targetX: this.canvas.width / 2 - 40
+                };
+                
+                // رسائل المستويات
+                this.levelMessages = [
+                    "ممتاز! قلبك محمي 💖",
+                    "إرادتك قوية! 💪", 
+                    "أنت محارب الصحة! ⚔️",
+                    "قلبك ينبض بالحياة! 💗",
+                    "لا شيء يوقفك! 🔥"
+                ];
+                
+                this.setupControls();
+            }
+            
+            setupControls() {
+                // التحكم بالماوس - يميناً ويساراً
+                this.canvas.addEventListener('mousemove', (e) => {
+                    if (this.gameState.isPlaying) {
+                        const rect = this.canvas.getBoundingClientRect();
+                        const mouseX = ((e.clientX - rect.left) / rect.width) * this.canvas.width;
+                        this.shield.targetX = mouseX - this.shield.width / 2;
+                    }
+                });
+                
+                // التحكم باللمس - يميناً ويساراً
+                this.canvas.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    if (this.gameState.isPlaying && e.touches.length > 0) {
+                        const rect = this.canvas.getBoundingClientRect();
+                        const touch = e.touches[0];
+                        const touchX = ((touch.clientX - rect.left) / rect.width) * this.canvas.width;
+                        this.shield.targetX = touchX - this.shield.width / 2;
+                    }
+                });
+                
+                this.canvas.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                });
+            }
+            
+            start() {
+                this.gameState.isPlaying = true;
+                this.gameState.cigarettes = [];
+                this.gameState.particles = [];
+                this.gameState.lastCigaretteSpawn = Date.now();
+                this.heart.health = this.heart.maxHealth;
+                this.shield.x = this.canvas.width / 2 - 40;
+                this.shield.targetX = this.canvas.width / 2 - 40;
+                this.gameState.levelStartTime = Date.now();
+                this.gameLoop();
+            }
+            
+            gameLoop() {
+                if (!this.gameState.isPlaying) return;
+                
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.gameLoop());
+            }
+            
+            update() {
+                const now = Date.now();
+                
+                // تحديث موقع المسطرة بسلاسة - أفقياً
+                this.shield.x += (this.shield.targetX - this.shield.x) * 0.15;
+                
+                // التأكد من بقاء المسطرة داخل الشاشة
+                this.shield.x = Math.max(0, Math.min(this.canvas.width - this.shield.width, this.shield.x));
+                
+                // إنتاج السجائر من الأسفل بمعدل أعلى في المستويات الأعلى
+                const spawnRate = Math.max(500, 2000 - (this.gameState.level * 150)); // زيادة صعوبة: تقليل الوقت بين السجائر مع المستوى
+                if (now - this.gameState.lastCigaretteSpawn > spawnRate) {
+                    // إنتاج عدة سجائر في نفس الوقت بشكل عشوائي (1-3 سجائر)
+                    const numCigarettes = Math.floor(Math.random() * 3) + 1;
+                    for (let i = 0; i < numCigarettes; i++) {
+                        this.spawnCigarette();
+                    }
+                    this.gameState.lastCigaretteSpawn = now;
+                }
+                
+                // تحديث السجائر - تتحرك من الأسفل للأعلى
+                for (let i = this.gameState.cigarettes.length - 1; i >= 0; i--) {
+                    const cigarette = this.gameState.cigarettes[i];
+                    cigarette.y -= cigarette.speed; // تتحرك للأعلى
+                    
+                    // فحص التصادم مع المسطرة
+                    if (this.checkCollision(cigarette, this.shield) && cigarette.y + cigarette.height > this.shield.y) {
+                        this.destroyCigarette(i);
+                        this.gameState.score += 10;
+                        this.createExplosion(cigarette.x, cigarette.y, '#4ade80');
+                    }
+                    // فحص وصول السيجارة للقلب
+                    else if (cigarette.y <= this.heart.y + 30) {
+                        this.heart.health -= 25;
+                        this.gameState.cigarettes.splice(i, 1);
+                        this.createExplosion(this.heart.x, this.heart.y, '#ef4444');
+                        
+                        if (this.heart.health <= 0) {
+                            this.gameState.lives--;
+                            this.heart.health = this.heart.maxHealth;
+                            
+                            if (this.gameState.lives <= 0) {
+                                this.gameOver();
+                                return;
+                            }
+                        }
+                    }
+                    // إزالة السجائر التي خرجت من الشاشة
+                    else if (cigarette.y < -50) {
+                        this.gameState.cigarettes.splice(i, 1);
+                    }
+                }
+                
+                // تحديث الجسيمات
+                for (let i = this.gameState.particles.length - 1; i >= 0; i--) {
+                    const particle = this.gameState.particles[i];
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    particle.life--;
+                    
+                    if (particle.life <= 0) {
+                        this.gameState.particles.splice(i, 1);
+                    }
+                }
+                
+                // تحديث نبضة القلب
+                this.heart.pulseScale = 1 + Math.sin(Date.now() * 0.005) * 0.1;
+                
+                // تحديث الوقت المتبقي
+                const elapsedTime = now - this.gameState.levelStartTime;
+                const remainingTime = Math.max(0, this.gameState.levelDuration - elapsedTime);
+                const minutes = Math.floor(remainingTime / 60000);
+                const seconds = Math.floor((remainingTime % 60000) / 1000);
+                document.getElementById('gameTime').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // فحص إكمال المستوى بعد 3 دقائق
+                if (remainingTime <= 0) {
+                    this.levelComplete();
+                    return;
+                }
+                
+                this.updateUI();
+            }
+            
+            draw() {
+                // خلفية متدرجة
+                const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+                gradient.addColorStop(0, '#1e40af');
+                gradient.addColorStop(0.5, '#7c3aed');
+                gradient.addColorStop(1, '#db2777');
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // رسم القلب
+                this.drawHeart();
+                
+                // رسم المسطرة الواقية
+                this.drawShield();
+                
+                // رسم السجائر
+                this.gameState.cigarettes.forEach(cigarette => {
+                    this.drawCigarette(cigarette);
+                });
+                
+                // رسم الجسيمات
+                this.gameState.particles.forEach(particle => {
+                    this.drawParticle(particle);
+                });
+                
+                // رسم خط الحماية
+                this.drawProtectionLine();
+            }
+            
+            drawHeart() {
+                this.ctx.save();
+                
+                // تأثير النبض
+                this.ctx.translate(this.heart.x, this.heart.y);
+                this.ctx.scale(this.heart.pulseScale, this.heart.pulseScale);
+                
+                // توهج القلب
+                this.ctx.shadowColor = '#ef4444';
+                this.ctx.shadowBlur = 20;
+                
+                // رسم القلب
+                this.ctx.font = `${this.heart.size}px Arial`;
+                this.ctx.textAlign = 'center';
+                this.ctx.fillStyle = '#ef4444';
+                this.ctx.fillText('❤️', 0, 0);
+                
+                this.ctx.restore();
+                
+                // شريط الصحة
+                const barWidth = 80;
+                const barHeight = 8;
+                const barX = this.heart.x - barWidth / 2;
+                const barY = this.heart.y + 40;
+                
+                // خلفية الشريط
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                this.ctx.fillRect(barX, barY, barWidth, barHeight);
+                
+                // شريط الصحة
+                const healthPercent = this.heart.health / this.heart.maxHealth;
+                this.ctx.fillStyle = healthPercent > 0.5 ? '#10b981' : '#ef4444';
+                this.ctx.fillRect(barX, barY, barWidth * healthPercent, barHeight);
+                
+                // إطار الشريط
+                this.ctx.strokeStyle = 'white';
+                this.ctx.lineWidth = 1;
+                this.ctx.strokeRect(barX, barY, barWidth, barHeight);
+            }
+            
+            drawShield() {
+                // توهج المسطرة
+                this.ctx.shadowColor = '#3b82f6';
+                this.ctx.shadowBlur = 15;
+                
+                // جسم المسطرة الأفقية
+                const gradient = this.ctx.createLinearGradient(
+                    this.shield.x, this.shield.y,
+                    this.shield.x + this.shield.width, this.shield.y + this.shield.height
+                );
+                gradient.addColorStop(0, '#60a5fa');
+                gradient.addColorStop(1, '#3b82f6');
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(this.shield.x, this.shield.y, this.shield.width, this.shield.height);
+                
+                // إطار المسطرة
+                this.ctx.strokeStyle = '#1d4ed8';
+                this.ctx.lineWidth = 2;
+                this.ctx.strokeRect(this.shield.x, this.shield.y, this.shield.width, this.shield.height);
+                
+                // إيقونة الدرع
+                this.ctx.shadowBlur = 0;
+                this.ctx.fillStyle = 'white';
+                this.ctx.font = '20px Arial';
+                this.ctx.textAlign = 'center';
+                this.ctx.fillText('🛡️', this.shield.x + this.shield.width / 2, this.shield.y + this.shield.height / 2 + 7);
+            }
+            
+            drawCigarette(cigarette) {
+                this.ctx.save();
+                
+                // رسم السيجارة عمودية
+                this.ctx.fillStyle = '#f3f4f6';
+                this.ctx.fillRect(cigarette.x, cigarette.y, cigarette.width, cigarette.height);
+                
+                // طرف السيجارة المشتعل
+                this.ctx.fillStyle = '#f97316';
+                this.ctx.fillRect(cigarette.x, cigarette.y, cigarette.width, 5);
+                
+                // الدخان يتصاعد للأعلى
+                this.ctx.fillStyle = 'rgba(156, 163, 175, 0.7)';
+                for (let i = 0; i < 3; i++) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        cigarette.x + cigarette.width / 2 + Math.sin(Date.now() * 0.01 + i) * 5, 
+                        cigarette.y - 10 - i * 8, 
+                        4 - i, 
+                        0, 
+                        Math.PI * 2
+                    );
+                    this.ctx.fill();
+                }
+                
+                this.ctx.restore();
+            }
+            
+            drawParticle(particle) {
+                this.ctx.fillStyle = particle.color;
+                this.ctx.globalAlpha = particle.life / 20;
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.globalAlpha = 1;
+            }
+            
+            drawProtectionLine() {
+                // خط الحماية الأفقي تحت القلب
+                this.ctx.strokeStyle = 'rgba(59, 130, 246, 0.3)';
+                this.ctx.lineWidth = 2;
+                this.ctx.setLineDash([5, 5]);
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, this.heart.y + 80);
+                this.ctx.lineTo(this.canvas.width, this.heart.y + 80);
+                this.ctx.stroke();
+                this.ctx.setLineDash([]);
+            }
+            
+            spawnCigarette() {
+                const cigarette = {
+                    x: Math.random() * (this.canvas.width - 25),
+                    y: this.canvas.height + 20,
+                    width: 8,
+                    height: 25,
+                    speed: 1.5 + this.gameState.level * 0.3 // زيادة السرعة مع المستوى
+                };
+                
+                this.gameState.cigarettes.push(cigarette);
+            }
+            
+            checkCollision(rect1, rect2) {
+                return rect1.x < rect2.x + rect2.width &&
+                       rect1.x + rect1.width > rect2.x &&
+                       rect1.y < rect2.y + rect2.height &&
+                       rect1.y + rect1.height > rect2.y;
+            }
+            
+            destroyCigarette(index) {
+                this.gameState.cigarettes.splice(index, 1);
+            }
+            
+            createExplosion(x, y, color) {
+                for (let i = 0; i < 6; i++) {
+                    this.gameState.particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 6,
+                        vy: (Math.random() - 0.5) * 6,
+                        size: Math.random() * 3 + 2,
+                        color: color,
+                        life: 20
+                    });
+                }
+            }
+            
+            updateUI() {
+                document.getElementById('gameLevel').textContent = this.gameState.level;
+                document.getElementById('gameScore').textContent = this.gameState.score;
+                document.getElementById('gameLives').textContent = '❤️'.repeat(this.gameState.lives);
+            }
+            
+            levelComplete() {
+                this.gameState.isPlaying = false;
+                this.gameState.level++;
+                
+                const message = this.levelMessages[Math.min(this.gameState.level - 2, this.levelMessages.length - 1)];
+                document.getElementById('levelMessage').textContent = message;
+                
+                document.getElementById('levelCompleteUI').classList.remove('hidden');
+                document.getElementById('levelCompleteUI').classList.add('flex');
+            }
+            
+            nextLevel() {
+                document.getElementById('levelCompleteUI').classList.add('hidden');
+                document.getElementById('levelCompleteUI').classList.remove('flex');
+                
+                this.heart.health = this.heart.maxHealth;
+                this.gameState.levelStartTime = Date.now();
+                this.start();
+            }
+            
+            gameOver() {
+                this.gameState.isPlaying = false;
+                document.getElementById('gameOverUI').classList.remove('hidden');
+                document.getElementById('gameOverUI').classList.add('flex');
+            }
+            
+            restart() {
+                this.gameState.level = 1;
+                this.gameState.score = 0;
+                this.gameState.lives = 3;
+                this.heart.health = this.heart.maxHealth;
+                this.gameState.levelStartTime = Date.now();
+                
+                document.getElementById('gameOverUI').classList.add('hidden');
+                document.getElementById('gameOverUI').classList.remove('flex');
+                
+                this.start();
+            }
+        }
+
+        // Initialize game
+        let heartGame;
+
+        function openGame() {
+            document.getElementById('gameModal').classList.remove('hidden');
+            document.getElementById('gameModal').classList.add('flex');
+            
+            if (!heartGame) {
+                heartGame = new HeartDefenseGame();
+            }
+        }
+
+        function closeGame() {
+            document.getElementById('gameModal').classList.add('hidden');
+            document.getElementById('gameModal').classList.remove('flex');
+            
+            if (heartGame) {
+                heartGame.gameState.isPlaying = false;
+            }
+        }
+
+        // Journey v3 functions
+        function initJourney() {
+            // Load saved data from localStorage
+            const savedData = localStorage.getItem('naqi_journey');
+            
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                journeyState.journeyStartTime = new Date(data.startTime);
+                journeyState.currentDay = data.currentDay || 1;
+                
+                // Check if it's time to unlock the next station
+                checkUnlockedStations();
+            } else {
+                // First time user - set start time to now
+                journeyState.journeyStartTime = new Date();
+                saveJourneyProgress();
+            }
+            
+            // Create points on the map
+            createMapPoints();
+            
+            // Set active day
+            setActiveDay(journeyState.currentDay);
+            
+            // Start the timer
+            startJourneyTimer();
+        }
+        
+        // Create points on the map with lock status
+        function createMapPoints() {
+            const mapPoints = document.querySelector('.map-points');
+            mapPoints.innerHTML = '';
+            
+            journeyPoints.forEach(point => {
+                const isUnlocked = point.day <= journeyState.currentDay;
+                const pointEl = document.createElement('div');
+                pointEl.className = `point ${point.day === journeyState.currentDay ? 'active' : ''} ${isUnlocked ? '' : 'locked'}`;
+                pointEl.style.left = `${point.x}%`;
+                pointEl.style.top = `${point.y}%`;
+                pointEl.textContent = point.day;
+                pointEl.setAttribute('data-day', point.day);
+                
+                const label = document.createElement('div');
+                label.className = 'point-label';
+                label.textContent = isUnlocked ? point.title : 'محطة مقفلة';
+                
+                pointEl.appendChild(label);
+                mapPoints.appendChild(pointEl);
+                
+                if (isUnlocked) {
+                    pointEl.addEventListener('click', () => {
+                        setActiveDay(point.day);
+                        showConfetti();
+                    });
+                }
+            });
+        }
+        
+        // Check if it's time to unlock new stations
+        function checkUnlockedStations() {
+            if (!journeyState.journeyStartTime) return;
+            
+            const now = new Date();
+            const timeDiff = now - journeyState.journeyStartTime;
+            const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1; // +1 because day 1 is unlocked from start
+            
+            if (daysPassed > journeyState.currentDay && daysPassed <= journeyPoints.length) {
+                journeyState.currentDay = daysPassed;
+                saveJourneyProgress();
+                createMapPoints();
+                setActiveDay(journeyState.currentDay);
+            }
+        }
+        
+        // Start the countdown timer
+        function startJourneyTimer() {
+            const timerInterval = setInterval(() => {
+                if (!journeyState.journeyStartTime) return;
+                
+                const now = new Date();
+                const nextUnlockTime = new Date(journeyState.journeyStartTime);
+                nextUnlockTime.setDate(nextUnlockTime.getDate() + journeyState.currentDay);
+                nextUnlockTime.setHours(24, 0, 0, 0); // Next day at midnight
+                
+                const timeDiff = nextUnlockTime - now;
+                
+                if (timeDiff <= 0) {
+                    // Time to unlock next station
+                    if (journeyState.currentDay < journeyPoints.length) {
+                        journeyState.currentDay++;
+                        saveJourneyProgress();
+                        createMapPoints();
+                        setActiveDay(journeyState.currentDay);
+                    }
+                    return;
+                }
+                
+                // Calculate hours, minutes, seconds
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                
+                // Update timer display
+                document.getElementById('timer-days').textContent = journeyState.currentDay;
+                document.getElementById('timer-hours').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+            }, 1000);
+        }
+        
+        // Save progress to localStorage
+        function saveJourneyProgress() {
+            const data = {
+                startTime: journeyState.journeyStartTime,
+                currentDay: journeyState.currentDay
+            };
+            localStorage.setItem('naqi_journey', JSON.stringify(data));
+        }
+        
+        // Reset the journey
+        function resetJourney() {
+            if (confirm('هل أنت متأكد أنك تريد إعادة تعيين الرحلة؟ سيتم حذف جميع تقدمك الحالي.')) {
+                localStorage.removeItem('naqi_journey');
+                journeyState.journeyStartTime = new Date();
+                journeyState.currentDay = 1;
+                saveJourneyProgress();
+                createMapPoints();
+                setActiveDay(journeyState.currentDay);
+                
+                // تحديث العداد فوراً
+                document.getElementById('timer-days').textContent = "1";
+                document.getElementById('timer-hours').textContent = "00:00:00";
+            }
+        }
+        
+        // Set active day
+        function setActiveDay(day) {
+            journeyState.currentDay = day;
+            
+            // Update points
+            document.querySelectorAll('.point').forEach(point => {
+                point.classList.remove('active');
+                if (parseInt(point.getAttribute('data-day')) === day) {
+                    point.classList.add('active');
+                }
+            });
+            
+            // Update content based on day
+            updateStory(day);
+            updateQuestions(day);
+            
+            // Update current station
+            const pointData = journeyPoints.find(p => p.day === day);
+            document.getElementById('current-station').textContent = `المحطة الحالية: ${pointData.title}`;
+            
+            // Show congratulations if it's the last day
+            if (day === journeyPoints.length) {
+                setTimeout(() => {
+                    document.getElementById('congratulations').style.display = 'flex';
+                    showConfetti(true); // Big celebration for completion
+                }, 1000);
+            }
+        }
+        
+        // Update story based on day
+        function updateStory(day) {
+            const pointData = journeyPoints.find(p => p.day === day);
+            
+            if (!pointData) return;
+            
+            document.getElementById('story-content').innerHTML = `<p>${pointData.story}</p>`;
+        }
+        
+        // Update questions based on day
+        function updateQuestions(day) {
+            const pointData = journeyPoints.find(p => p.day === day);
+            
+            if (!pointData) return;
+            
+            let questionsHTML = '';
+            
+            pointData.questions.forEach((question, index) => {
+                questionsHTML += `
+                    <div class="question">
+                        <div class="question-text">${question.text}</div>
+                        <div class="options">
+                `;
+                
+                question.options.forEach(option => {
+                    questionsHTML += `<div class="option">${option}</div>`;
+                });
+                
+                questionsHTML += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('questions-content').innerHTML = questionsHTML;
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+        }
+        
+        // Show confetti animation
+        function showConfetti(isBig = false) {
+            const count = isBig ? 300 : 100;
+            const defaults = {
+                origin: { y: 0.7 },
+                zIndex: 1050
+            };
+            
+            function fire(particleRatio, opts) {
+                confetti({
+                    ...defaults,
+                    ...opts,
+                    particleCount: Math.floor(count * particleRatio)
+                });
+            }
+            
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+            });
+            
+            fire(0.2, {
+                spread: 60,
+            });
+            
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8
+            });
+            
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 25,
+                decay: 0.92,
+                scalar: 1.2
+            });
+            
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 45,
+            });
+            
+            if (isBig) {
+                // Additional celebration for completion
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 150,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+                    
+                    confetti({
+                        particleCount: 150,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+                }, 200);
+            }
+        }
+        
+        function openJourneyModal() {
+            document.getElementById('journeyModal').classList.add('active');
+            initJourney();
+        }
+        
+        function closeJourneyModal() {
+            document.getElementById('journeyModal').classList.remove('active');
+        }
+        
+        function backToMainFromJourney() {
+            closeJourneyModal();
+        }
+
+        // Event listeners for new features
+        document.getElementById('aiAnalyzeBtn').addEventListener('click', updateAIInsights);
+
+        document.getElementById('meditationBtn').addEventListener('click', openSessionsModal);
+        document.getElementById('startStoryBtn').addEventListener('click', openJourneyModal);
+        document.getElementById('nextQuestionBtn').addEventListener('click', nextQuestion);
+        document.getElementById('prevQuestionBtn').addEventListener('click', prevQuestion);
+        document.getElementById('backToSessionsBtn').addEventListener('click', backToSessions);
+        document.getElementById('backToSessionsFromMessageBtn').addEventListener('click', backToSessions);
+        document.getElementById('nextSessionBtn').addEventListener('click', startNextSession);
+        document.getElementById('replantBtn').addEventListener('click', resetTree);
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+
+        // Game event listeners
+        document.getElementById('gameBtn').addEventListener('click', openGame);
+        document.getElementById('closeGameBtn').addEventListener('click', closeGame);
+        document.getElementById('startGameBtn').addEventListener('click', () => {
+            document.getElementById('gameUI').classList.add('hidden');
+            heartGame.start();
+        });
+        document.getElementById('nextLevelBtn').addEventListener('click', () => {
+            heartGame.nextLevel();
+        });
+        document.getElementById('restartGameBtn').addEventListener('click', () => {
+            heartGame.restart();
+        });
+
+        // Sessions modal events
+        document.getElementById('closeSessionsBtn').addEventListener('click', closeSessionsModal);
+        document.getElementById('backToMainBtn').addEventListener('click', () => {
+            closeSessionsModal();
+        });
+
+        document.getElementById('rewardStoreBtn').addEventListener('click', () => {
+            document.getElementById('rewardModal').classList.remove('hidden');
+            document.getElementById('rewardModal').classList.add('flex');
+        });
+
+        document.getElementById('closeRewardBtn').addEventListener('click', () => {
+            document.getElementById('rewardModal').classList.add('hidden');
+            document.getElementById('rewardModal').classList.remove('flex');
+        });
+
+        // Journey modal events
+        document.getElementById('closeJourneyModal').addEventListener('click', closeJourneyModal);
+        document.getElementById('prev-btn').addEventListener('click', backToMainFromJourney);
+        document.getElementById('reset-btn').addEventListener('click', resetJourney);
+        document.getElementById('close-btn').addEventListener('click', () => {
+            document.getElementById('congratulations').style.display = 'none';
+        });
+
+        // Registration form event listener
+        document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
+
+        // Reset registration button
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#resetBtn')) {
+                if (confirm('هل تريد إعادة التسجيل؟ سيتم حذف جميع البيانات الحالية.')) {
+                    // Clear all data
+                    localStorage.clear();
+                    
+                    // Reset app state
+                    appState = {
+                        userName: null,
+                        isRegistered: false,
+                        quitDate: null,
+                        cigarettesPerDay: 20,
+                        pricePerPack: 15,
+                        currency: 'SAR',
+                        cigarettesPerPack: 20,
+                        level: 1,
+                        xp: 0,
+                        coins: 0,
+                        cravingTimes: [],
+                        achievements: [],
+                        treeGrowth: 0,
+                        lastTreeStage: 0,
+                        mood: 'neutral',
+                        meditationSessions: Array(10).fill(0).map(() => ({ completed: false, progress: 0 }))
+                    };
+                    
+                    // Reload page to restart
+                    location.reload();
+                }
+            }
+        });
+
+        // Check registration status on page load
+        document.addEventListener('DOMContentLoaded', checkRegistration);
+        
+        // Also check immediately in case DOMContentLoaded already fired
+        checkRegistration();
+    </script>
+</body>
+</html>
